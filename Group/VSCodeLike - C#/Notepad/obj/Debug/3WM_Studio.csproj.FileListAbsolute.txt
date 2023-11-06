@@ -1,0 +1,12 @@
+C:\Users\Matthieu\Desktop\Code\ping\Notepad\bin\Debug\Notepad.exe.config
+C:\Users\Matthieu\Desktop\Code\ping\Notepad\bin\Debug\Notepad.exe
+C:\Users\Matthieu\Desktop\Code\ping\Notepad\bin\Debug\Notepad.pdb
+C:\Users\Matthieu\Desktop\Code\ping\Notepad\obj\Debug\3WM_Studio.csproj.AssemblyReference.cache
+C:\Users\Matthieu\Desktop\Code\ping\Notepad\obj\Debug\3WM_Studio.csproj.SuggestedBindingRedirects.cache
+C:\Users\Matthieu\Desktop\Code\ping\Notepad\obj\Debug\Notepad.Controls.MainMenuStrip.resources
+C:\Users\Matthieu\Desktop\Code\ping\Notepad\obj\Debug\Notepad.MainForm.resources
+C:\Users\Matthieu\Desktop\Code\ping\Notepad\obj\Debug\Notepad.Properties.Resources.resources
+C:\Users\Matthieu\Desktop\Code\ping\Notepad\obj\Debug\3WM_Studio.csproj.GenerateResource.cache
+C:\Users\Matthieu\Desktop\Code\ping\Notepad\obj\Debug\3WM_Studio.csproj.CoreCompileInputs.cache
+C:\Users\Matthieu\Desktop\Code\ping\Notepad\obj\Debug\Notepad.exe
+C:\Users\Matthieu\Desktop\Code\ping\Notepad\obj\Debug\Notepad.pdb

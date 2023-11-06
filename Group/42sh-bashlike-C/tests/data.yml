@@ -1,0 +1,995 @@
+- name: simple echo
+  week: 1
+  input: echo 'toto'
+
+- name: (MUST FAIL) simple cmd not found
+  week: 1
+  input: dfa
+
+- name: echo -n option
+  week: 1
+  input: echo -n no newline
+
+- name: simple if
+  week: 1
+  input: if true; then echo 'true'; fi
+
+- name: if with special cond true
+  week: 1
+  input: if [ 3 -eq 3 ]; then echo 3 = 3 is true; else echo wtf ?; fi
+
+- name: if with special cond false
+  week: 1
+  input: if [ 3 -eq 4 ]; then echo 3 = 4 ???; else echo better to be different; fi
+
+- name: simple else
+  week: 1
+  input: if false; then echo 'false'; else echo 'true'; fi
+
+- name: simple elif
+  week: 1
+  input: if false; then echo 'false'; elif true; then echo 'true'; fi
+
+- name: if in if but no ; at the end of fi
+  week: 1
+  input: if if true; then echo 'true'; fi then echo 'true is true'; fi
+
+- name: (MUST FAIL) start with else
+  week: 1
+  input: else echo 'false'; fi
+
+- name: (MUST FAIL) start with elif
+  week: 1
+  input: elif true; then echo 'true'; fi
+
+- name: if in if
+  week: 1
+  input: if if true; then echo 'true'; fi; then echo 'true is true'; fi
+
+- name: if in then
+  week: 1
+  input: if true; then if true; then echo 'true in true is true'; fi; else echo 'true is false'; fi
+
+- name: if in if in if but second if is false
+  week: 1
+  input: if true; then if false; then if true; then echo 'true is false is true'; fi; else echo 'true is false'; fi; fi   
+
+- name: if multiline
+  week: 1
+  input: | 
+    if true;
+    then
+    echo lol
+    fi
+
+- name: if multiline with else
+  week: 1
+  input: |
+    if false;
+    then; echo in if
+    else
+    echo passed
+    fi
+
+- name: if multiline with elif and if inside
+  week: 1
+  input: |
+    if false;
+    then
+    echo false
+    elif true
+    then   
+      if [ 3 -eq 3 ]; then
+      echo inside if passed
+      echo check
+      fi
+    fi
+
+- name: if and elif no passed + cmd 
+  week: 1
+  input: |
+    if false
+    then echo test;
+    elif [ 42 -eq 24 ]; then
+    echo no passed
+    fi
+    echo cmd
+
+- name: (MUST FAIL) 2 sep
+  week: 1
+  input: if true; then echo ok;; fi
+
+- name: multiple newline at the beginning and between cmd
+  week: 1
+  input: |
+  
+  
+    echo first
+
+
+
+      echo second   
+
+- name: (MUST FAIL) cmd cond not found
+  week: 1
+  input: if oui; then echo oui; fi
+
+- name: if in if but false
+  week: 1
+  input: if if false; then echo lol; fi then echo passed ; fi
+
+- name: if in if but false with if in then
+  week: 1
+  input: if if false; then echo lol; fi then echo passed ; if true; then echo aled; fi fi
+
+- name: (MUST FAIL) if with cmd not found, return 127
+  week: 1
+  input: |
+    if true;
+    then
+    echo test
+    ls .
+    dsadasdasdas  
+    fi   
+
+- name: if with random spaces
+  week: 1
+  input: |
+    if      true     ;
+    then    
+      echo            aled;
+    if false;       
+        then ls;
+        else
+          echo passed
+          fi
+          fi
+
+- name: if and echo
+  week: 1
+  input: if true; then echo true; fi ; echo passedtoo
+
+- name: if list as cond end by if
+  week: 1
+  input:  if echo hello;  if true; then echo f_passed; fi then echo passed ; fi 
+
+- name: (MUST FAIL) if commands without sep
+  week: 1
+  input: if if true; then echo f_passed; fi echo hello; then echo passed ; fi
+
+- name: (MUST FAIL) simple list commands
+  week: 1
+  input: if true; then echo f_passed; fi echo hello   
+
+- name: ULTIMATE TEST WEEK 1
+  week: 1
+  input: |
+    if ls .; if tree; then if treee; then echo lolipop; fi fi
+    if true;
+        then   
+        echo hello guys;
+        if ls -a /;
+            if ecewho hello;
+            then
+                echo poire
+            elif
+                if true; then ls ; else echo ;fi;
+                    ls;
+                    echo poire;
+                then   
+                    echo lok;
+                    echo pollisse;   
+            fi
+        then
+            echo poire_au_chocolat;  
+        fi
+    fi
+    then ls .;
+    else
+    if echo lol;
+       if echo poirier; if echo poirrrr; if cheval; then echo ppp; elif ls; then echo iaaaaaaaaaaaa; fi; then lll;      else polkio; fi; then if true; then echo iaaaaaa; fi; fi    
+    then ls .; 
+        if echo hello; 
+            if lol;    
+            then echo hello; 
+            elif
+               if true; then echo plkjnb; fi
+           then
+              echo hehe; 
+            fi 
+        then echo hello; ls .; 
+        fi    
+      fi
+      fi
+      echo hello
+    if ls .; if tree; then if treee; then echo lolipop; fi fi
+    if true;
+        then   
+        echo hello guys;
+        if ls -a /;
+            if ecewho hello;
+            then
+                echo poire
+            elif
+                if true; then ls ; else echo ;fi;
+                    ls;
+                    echo poire;
+                then   
+                    echo lok;
+                    echo pollisse;   
+            fi
+        then
+            echo poire_au_chocolat;  
+        fi
+    fi
+    then ls .;
+    else
+    if echo lol;
+       if echo poirier; if echo poirrrr; if cheval; then echo ppp; elif ls; then echo iaaaaaaaaaaaa; fi; then lll;      else polkio; fi; then if true; then echo iaaaaaa; fi; fi    
+    then ls .; 
+        if echo hello; 
+            if lol;    
+            then echo hello; 
+            elif
+               if true; then echo plkjnb; fi
+           then
+              echo hehe; 
+            fi 
+        then echo hello; ls .; 
+        fi    
+      fi
+      fi  
+      echo poire_chocolat
+
+##############################################
+#################  WEEK 2 ####################
+##############################################
+
+- name: simple variable
+  week: 2
+  input: |
+    var=42
+    echo $var
+- name: (MUST FAIL) variable bad name
+  week: 2
+  input: 4fre=67
+
+- name: simple variable with bracket
+  week: 2
+  input: |
+    var=24
+    echo ${var}
+
+- name: echo with variable
+  week: 2
+  input: |
+    a=ec
+    b=ho
+    $a$b hello
+
+- name: expand variable in string
+  week: 2
+  input: var=INSIDE; echo 'Im$var'
+
+- name: concatenate variable
+  week: 2
+  input: |
+    var=sh
+    var=42$var
+    echo $var
+
+- name: expand $?
+  week: 2
+  input: echo $?
+
+- name: expand $? multiple time with failes
+  week: 2
+  input: echo $?; echo $?; ko; echo $?
+
+- name: double quote with var
+  week: 2
+  input: |
+    var=test
+    echo "It is $var"
+
+
+- name: while simple
+  week: 2
+  input: |
+    var=0
+    while [ $var != "0000" ]
+    do
+      var=0$var
+      echo true
+    done
+
+- name: while in while
+  week: 2
+  input: |
+    var=0
+    var2=1
+    while [ $var != "0000" ]
+    do
+      var=0$var
+      echo 1
+      while [ $var2 != "111" ]
+      do
+        var2=1$var2
+        echo 2
+      done
+      var2=1
+    done
+
+- name: a lot of while
+  week: 2
+  input: |
+    a=1
+    b=2
+    c=3
+    d=4
+    while [ "$a" != "1AAAA" ]
+    do
+    a="${a}A"
+    echo $a
+    while [ "$b" != "2BBBB" ]
+    do
+        b="${b}B"
+        echo "2th $a $b !"
+        while [ "$c" != "3CCCC" ]
+        do
+            c="${c}C"
+            echo "3th $a $b $c !"
+            while [ "$d" != "4DDDD" ]
+            do
+                d="${d}D"
+                echo "finally display $a $b $c $d !"
+            done
+        done
+    done
+    done
+
+- name: (MUST FAIL) missing done in while
+  week: 2
+  input: |
+    while true; do
+      echo test
+
+- name: (MUST FAIL) missing do in while
+  week: 2
+  input: |
+    while true
+      echo test
+    done
+
+- name: until simple
+  week: 2
+  input: |
+    var=0
+    until [ $var = "0000" ]
+    do
+      var=0$var
+      echo abc
+    done
+
+- name: (MUST FAIL) missing done in until
+  week: 2
+  input: |
+    until false; do
+      echo test
+
+- name: (MUST FAIL) missing do in until
+  week: 2
+  input: |
+    until false
+      echo test
+    done
+
+- name: simple for
+  week: 2
+  input: |
+    for i in a b c; do
+      echo first
+      echo second
+    done
+
+
+- name: (MUST FAIL) missing done in for
+  week: 2
+  input: |
+    for p in 42 false; do
+      echo test
+
+- name: (MUST FAIL) missing do in for
+  week: 2
+  input: |
+    for aled in test;
+      echo test
+    done
+
+- name: (MUST FAIL) missing 'in' in for
+  week: 2
+  input: |
+    for i test; do
+      echo $i
+    done
+
+- name: for with expand variable
+  week: 2
+  input: |
+    for i in echo 42 sh;
+    do
+      echo $i
+    done
+
+- name: (MUST FAIL) for with bad cmd
+  week: 2
+  input: |
+    for a in a b v; do
+      echo test;
+      sadasased
+    done
+
+- name: negation in if
+  week: 2
+  input: |
+    if [ ! 3 -ne 3 ]; then
+      echo inside
+    else
+      echo 'You are lost ?'
+    fi
+
+- name: and in if condition
+  week: 2
+  input: |
+    if [ 3 -eq 3 ] && [ 5 -eq 5 ]; then
+      echo test;
+    fi
+
+- name: or in if condition
+  week: 2
+  input: |
+    if false || [ 42 -eq 42 ]
+    then
+      echo passed
+    fi
+
+- name: simple negation on cmd
+  week: 2
+  input: ! echo passed
+
+- name: simple negation on if
+  week: 2
+  input: ! if true; then echo error 1; fi
+
+- name: negation in if condtion
+  week: 2
+  input: |
+    if ! true
+    then
+      echo no passed
+    else
+      echo ok
+    fi
+
+- name: (MUST FAIL) negation followed by negation
+  week: 2
+  input: if ! ! true; then echo why ?; fi
+
+- name: negation on cmd with 2 cmd
+  week: 2
+  input: ! echo test; echo 'no error'
+
+- name: negation in if then
+  week: 2
+  input: |
+    if [ 3 -eq 3 ]
+    then
+      ! echo aled
+    fi
+
+- name: strange test
+  week: 2
+  input: if
+
+- name: negation in if cond if then
+  week: 2
+  input: |
+    if 
+    if true; then ! echo lol; fi
+    then
+      echo poire;
+    else
+      echo OUGA;
+    fi
+
+- name: negation in if else
+  week: 2
+  input: |
+    if 
+      if true; then ! echo lol; fi
+      then
+        echo poire;
+      else
+        echo OUGA;
+      fi; ! echo lolipop
+
+- name: negation in for
+  week: 2
+  input: |
+    for i in 1 2 3 4 5 6  7 8 9 
+    do
+      ! echo poire
+    done
+
+- name: negation in chain
+  week: 2
+  input: echo ! lol; ! echo lkj; if ! true; then echo poire; elif ! ell; then erer; else ! erer; fi
+
+- name: while negation
+  week: 2
+  input: |
+    var=0
+    \! while [ $var != "0000" ]; do
+      echo $var;
+      var=0$var
+    done
+
+- name: while with for and if in condition
+  week: 2
+  input: |
+    var=0
+    while for i in a b c; do
+       if [ $var = "000" ]; then
+           not_cmd
+       else
+           echo ok
+       fi
+       done
+    do
+        echo "in while"
+       var=0$var
+    done
+
+- name: double for
+  week: 2
+  input: |
+    for i in Im in for; do
+      echo $i
+      for aled in 2e for;
+      do
+        echo $aled
+      done
+    done
+
+- name: variable simple, with bracket, empty, redefinition
+  week: 2
+  input: |
+    num=42
+    shell='sh'
+    group="nifty_"
+    mark=
+    echo -n $num${shell} ${group}$mark
+    group='solomon'
+    echo ${no_var}$group
+
+- name: expand varible in for list
+  week: 2
+  input: |
+    var=24
+    var2=42
+    for i in $var $var2; do
+      echo $i
+    done
+
+- name: simple pipe
+  week: 2
+  input: echo 'test' | cat -e
+
+- name: negation pipe
+  week: 2
+  input: ! echo test | cat -e
+
+- name: negation in if condition with pipe
+  week: 2
+  input: |
+    if ! echo test | false; then
+      echo ok
+    else
+      echo not passed
+
+- name: (MUST FAIL) negation unexpected in if condition with pipe
+  week: 2
+  input: |
+    if true | ! echo test; then
+      echo you're broken bro ?
+    else
+      echo where is the error ?
+
+- name: pipe in for
+  week: 2
+  input: |
+    for i in toto tata; do
+      echo $i | cat -e
+      echo 50sh | tr 5 4 | tr 0 2
+    done
+
+- name: (MUST FAIl) pipe followed by pipe
+  week: 2
+  input: |
+    echo true | | cat -e
+
+- name: double pipe
+  week: 2
+  input: echo hdllu | tr d e | tr u o
+
+- name: while pipe if
+  week: 2
+  input: |
+    var=0
+    while [ $var != "0000" ];
+    then
+      echo $var
+      var=0$var
+    done |
+    if true; then
+      cat -e
+    fi
+
+- name: simple and
+  week: 2
+  input: echo aled && ! echo test
+
+- name: simple or
+  week: 2
+  input: false || true
+
+- name: multiple and
+  week: 2
+  input: echo oui && true && false
+
+- name: multiple or
+  week: 2
+  input: false || false || true
+
+- name: and / or
+  week: 2
+  input: echo test && false || true
+
+- name: and pipe and
+  week: 2
+  input: echo test && echo b | cat -e && echo d
+
+- name: and all pipe
+  week: 2
+  input: echo test && echo b && echo data | cat -e
+
+- name: and in while condition and if condition
+  week: 2
+  input: |
+    var="0"
+    nb="4"
+    while [ $var != "00000" ] && [ $nb != "42" ]; do
+       echo $var;
+       var="0$var"
+       if false || [ $var = "000" ]; then
+           ls
+           nb="${nb}"2
+       fi
+    done
+
+- name: (MUST FAIL) redir error ><
+  week: 2
+  input: echo 'in_file' 0>< file
+
+- name: (MUST FAIL) redir error <|
+  week: 2
+  input: echo idk 2<| echo test
+
+##############################################
+#################  WEEK 3 ####################
+##############################################
+
+- name: simple exit
+  week: 3
+  input: exit 42
+
+- name: exit with code > 255
+  week: 3
+  input: exit 5000
+
+- name: exit with negative code
+  week: 3
+  input: exit -42
+
+- name: exit with code > max_int
+  week: 3
+  input: exit 1654164465464651651
+
+- name: exit last code
+  week: 3
+  input: \! echo test; exit; echo aled
+
+- name: cd ..
+  week: 3
+  input: cd ..; ls
+
+- name: cd hard
+  week: 3
+  input: unset -v PWD; unset -v OLDPWD; cd ..; ls --color; cd .. ; ls --color
+
+- name: block command simple
+  week: 3
+  input: echo a; \{ echo b; echo c; }; echo d
+
+- name: block command with if
+  week: 3
+  input: \{ if true; then echo hello; fi; echo fg; echo glhf; }; echo chocolate
+
+- name: block command inside while
+  week: 3
+  input: if true; then \{ echo a; echo b; } | cat -e; fi; echo ok
+
+- name: block command vriable outside
+  week: 3
+  input: var=00; \{ echo $var; }; echo $var
+
+- name: block command variable inside
+  week: 3
+  input: \{ var=00; echo $var; }; echo $var
+
+- name: block command with pipe inside
+  week: 3
+  input: \{ echo a | cat -e; }; echo b
+
+- name: (MUST FAIL) block command first attach
+  week: 3
+  input: \{echo a; }
+
+- name: (MUST FAIL) block command no begin
+  week: 3
+  input: echo a; }
+
+- name: (MUST FAIL) block command no end
+  week: 3
+  input: \{ echo a;
+
+- name: (MUST FAIL) block command no sep at end
+  week: 3
+  input: \{echo a }
+
+- name: WEEK 1 + WEEK 2 test
+  week: 3
+  input: |
+    a=1
+    b=2
+    c=3
+    d=$a$b$c
+    if ! [ ${b} -eq 1 ]; then echo "string${d}instring"; else exit 66; fi
+    while [ "$c" != "3XXX" ]
+    do
+    c=${c}X
+    echo 'in while $c ${c}'
+    echo "true value is $c  "
+    for i in 1 2 3 4 5; do
+        if [ $a -eq $i ] || [ $b -eq $i ]; then
+            echo 'first if where' $i
+        else echo "second if"; fi; done
+    for j in a b c d
+    do
+        echo $j | tr a X | tr c Y
+        if [ ${j} = "b" ] && ! [ $j = "d" ]; then echo strange cond
+        else echo return back; fi
+    done
+    while [ $d != "123456" ]
+    do
+        for word in "echo" "ls"
+        do
+            echo "in for with $word  abc"
+            if ! [ $word = "ls" ]
+            then
+                $word "ls"
+            else
+                echo "$word cbc"
+            fi
+        done
+        if [ $d = "123" ]; then d=${d}4; echo patate
+        elif [ $d = "1234" ]; then d=${d}5; echo tomate
+        else d=${d}6; fi
+        echo "matthieu ${d}   cbc" | tr t T
+    done
+    done
+    echo custom exit
+    exit 69
+
+- name: function simple
+  week: 3
+  input: foo() \{ echo a; }; foo
+
+- name: function define function
+  week: 3
+  input: foo () \{ bar() \{ echo a; } }; foo; bar
+
+- name: function variable inside
+  week: 3
+  input: foo() \{ var=00; }; foo; echo $var;
+
+- name: function variable outside
+  week: 3
+  input: var=00; foo() \{ echo $var; }; foo; echo $var
+
+- name: function with pipe inside
+  week: 3
+  input: foo () \{ echo a | cat -e; }; foo
+
+- name: function with pipe outside
+  week: 3
+  input: foo () \{ echo a; }; foo | cat -e
+
+- name: function declaration in pipe
+  week: 3
+  input: foo () \{ echo a; } | cat -e; foo
+
+- name: (MUST FAIL) declaration without ()
+  week: 3
+  input: foo \{ echo a; }; foo
+
+- name: (MUST FAIL) declaration with multiple ()
+  week: 3
+  input: foo () () \{ echo a; }; foo
+
+- name: call function in for
+  week: 3
+  input: |
+    foo (){ echo -n 42; echo "sh"; };
+    for i in 2 4 6 8 10; do
+      if [ $i -eq 4 ]; then
+        foo;
+      elif [ $i -eq 8 ]; then
+        foo;
+        printf ':adawd\n'
+      fi
+    done
+
+- name: block inside while with pipe and variable
+  week: 3
+  input: |
+    var=0
+    while [ $var != "0000" ]; do
+      if [ $var = "00" ]; then
+        { echo -n 42; echo 's' "h "; } | cat -e
+      fi
+      var=0$var
+    done
+
+- name: unset variable
+  week: 3
+  input: var=My_dir:; echo $var; unset var; echo $var;
+
+- name: subshell in a nutshell >.<
+  week: 3
+  input: (echo a);(echo b);(echo c);(echo d);(echo e);((echo f))
+
+- name: if elif in subshell
+  week: 3
+  input: ((if false; then echo 'false'; elif true; then echo 'true'; fi))
+
+- name: subshell function
+  week: 3
+  input: ((foo() \{ echo a; }; foo))
+
+- name: (MUST FAIL) subshell wrong number or para
+  week: 3
+  input: ((echo wrong)
+
+- name: subshell if
+  week: 3
+  input: ((if false; then echo 'false'; fi))
+
+- name: subshell for
+  week: 3
+  input: ((for i in 1 2 3 4; do echo $i; done))
+
+- name: subshell multiline
+  week: 3
+  input: |
+    ((
+    echo line 1
+    echo line 2
+    echo line 3
+    ))
+
+- name: test ((((((((((((((subshell))))))))))))))
+  week: 3
+  input: ((((((((echo in pus '$i'))))))))
+
+- name: subshell while
+  week: 3
+  input: (( var=1; while [ $var != "1111" ]; do echo lol; var=1$var; done))
+
+- name: subshell in subshell
+  week: 3
+  input: (((echo 1); (echo 2);))
+
+##############################################
+#################  WEEK 4 ####################
+##############################################
+
+- name: case simple
+  week: 4
+  input: |
+    case arg in
+      ab) echo a b
+          ;;
+      arg)
+          echo OK
+          ;;
+    esac
+
+- name: case glob
+  week: 4
+  input: |
+    case arg in
+      ab) echo a b
+          ;;
+      \*) echo OK
+    esac
+
+- name: case variable
+  week: 4
+  input: |
+    var=00
+    case $var in
+      0) echo KO
+          ;;
+      0?) echo OK
+          ;;
+    esac
+
+- name: case in func with if in
+  week: 4
+  input: |
+    foo () \{
+      case $1 in
+        a*) if \[ $2 = "abc" ]; then
+              echo OK
+          else
+              echo KO
+          fi
+            ;;
+        \*) echo KO
+            ;;
+      esac
+    }
+    foo ade abc
+
+- name: while with case in
+  week: 4
+  input: |
+    var=0
+    while \[ $var != "0000" ]; do
+      case $var in
+        00) echo second
+            ;;
+        000) echo third
+            ;;;
+      esac
+      var=0$var
+    done
+
+- name: (MUST FAIL) case without esac
+  week: 4
+  input: |
+    case a in
+      a) echo a
+      ;;
+    echo a
+
+- name: (MUST FAIL) case without ;;
+  week: 4
+  input: |
+    case a in
+      a) echo a
+        ;
+    esac
+    echo b
+

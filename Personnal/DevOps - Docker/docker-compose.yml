@@ -1,0 +1,71 @@
+version: '3.9'
+services:
+    worker:
+        build: ./worker
+        ports:
+            - "9000:5000"
+        networks:
+            - firs_
+            - sec_
+            - thr_
+        deploy:
+           resources:
+               limits:
+                   memory: 100M
+                   cpus: "1"
+        hostname: worker
+        container_name: worker
+    web:
+        build: ./web
+        ports:
+            - "5000:5000"
+        deploy:
+            resources:
+                limits:
+                    memory: 100M
+                    cpus: "1"
+        networks:
+            - firs_
+            - fort_
+        hostname: web
+        container_name: web
+    redis:
+        image: "redis:alpine"
+        networks:
+            - sec_
+            - thr_
+        volumes:
+            - redis_data:/data
+        ports:
+            - 6739:6739
+        deploy:
+           resources:
+               limits:
+                   memory: 100M
+        hostname: redis
+        container_name: redis
+    nginx:
+        networks:
+            - firs_
+            - fort_
+            - sec_
+        image: "nginx:1.23-alpine"
+        expose:
+            - 80
+            - 443
+        ports:
+            - "433:433"
+            - "80:80"
+        volumes: 
+            - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+        deploy:
+           resources:
+               limits:
+                   memory: 100M
+networks:
+    firs_: 
+    fort_:
+    sec_:
+    thr_: 
+volumes:
+    redis_data:

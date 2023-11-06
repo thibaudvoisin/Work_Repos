@@ -1,0 +1,162 @@
+workflow:
+  rules:
+    - if: '$CI_COMMIT_REF_NAME != "dev" && $CI_COMMIT_REF_NAME != "main" && $CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_PIPELINE_SOURCE == "push" && ($CI_COMMIT_REF_NAME == "main" || $CI_COMMIT_REF_NAME == "dev")'
+    - if:  $CI_COMMIT_TAG =~ /^v[0-9]+.[0-9]+.[0-9]+(-[0-9A-Za-z-]+)?$/
+
+stages:
+  - lint
+  - test
+  - build
+  - docker
+  - deploy
+
+# ---------------------- commit source ----------------------
+lint-back-job:
+  stage: lint
+  image: node:18-alpine
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_REF_NAME == "main"'
+  script:
+    - cd back-end
+    - npm ci
+    - npm run lint
+
+lint-front-job:
+  stage: lint
+  image: node:18-alpine
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_REF_NAME == "main"'
+  script:
+    - cd front-end
+    - npm ci
+    - npm run lint
+
+test-back-job:
+  stage: test
+  image: node:18-alpine
+  rules:
+    - if: '($CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main") || $CI_COMMIT_REF_NAME == "main"'
+  script:
+    - cd back-end
+    - npm ci
+    - npm run test -- --coverage --ci --reporters=default --reporters=jest-junit
+  artifacts:
+    when: always
+    reports:
+      junit: back-end/junit.xml
+
+test-migration-job:
+  stage: test
+  image: node:21
+  rules:
+    - if: '($CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main") || $CI_COMMIT_REF_NAME == "main"'
+  script:
+    - apt update && apt install -y podman podman-compose
+    - cd database
+    - podman-compose up -d
+    - cd ../back-end
+    - npm ci
+    - cd sequelize
+    - npx sequelize-cli db:migrate
+
+
+build-back-job:
+  stage: build
+  image: node:18-alpine
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_REF_NAME == "main"
+  script:
+    - cd back-end
+    - npm ci
+    - npm run build
+
+build-front-job:
+  stage: build
+  image: node:18-alpine
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_REF_NAME == "main"
+  script:
+    - cd front-end
+    - npm ci
+    - npm run build
+
+# ---------------------- merge request source ----------------------
+build-back-docker-job:
+  stage: docker
+  image: docker:latest
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && ($CI_COMMIT_REF_NAME == "main" || $CI_COMMIT_REF_NAME == "dev")'
+  script:
+    - cd back-end
+    - docker login registry.ubsi.fr -u $CI_DOCKER_USER -p $CI_DOCKER_PASSWORD
+    - docker build -t registry.ubsi.fr/sales-management-back:$CI_COMMIT_SHORT_SHA .
+    - docker push registry.ubsi.fr/sales-management-back:$CI_COMMIT_SHORT_SHA
+
+
+build-front-docker-job: &build_front_default
+  stage: docker
+  image: docker:latest
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "dev"'
+  script:
+    - cd front-end
+    - docker login registry.ubsi.fr -u $CI_DOCKER_USER -p $CI_DOCKER_PASSWORD
+    - docker build --build-arg PUBLIC_API_URL=$PUBLIC_API_URL -t registry.ubsi.fr/sales-management-front:$CI_COMMIT_SHORT_SHA .
+    - docker push registry.ubsi.fr/sales-management-front:$CI_COMMIT_SHORT_SHA
+
+deploy-job: &deploy_default
+  stage: deploy
+  image: ubuntu
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "dev"'
+  before_script:
+  - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
+  - eval $(ssh-agent -s)
+  - chmod 400 "$SSH_PRIVATE_KEY"
+  - ssh-add "$SSH_PRIVATE_KEY"
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+  - echo "HOST *" > ~/.ssh/config
+  - echo "StrictHostKeyChecking no" >> ~/.ssh/config
+  script:
+    - ssh -t dokku@ubsi.fr -p 2203 git:from-image sales-management-front registry.ubsi.fr/sales-management-front:$CI_COMMIT_SHORT_SHA || true
+    - ssh -t dokku@ubsi.fr -p 2203 git:from-image sales-management-back registry.ubsi.fr/sales-management-back:$CI_COMMIT_SHORT_SHA || true
+
+# ---------------------- Mise en pré-production ----------------------
+build-front-preprod:
+  <<: *build_front_default
+  rules: 
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
+  script:
+    - cd front-end
+    - docker login registry.ubsi.fr -u $CI_DOCKER_USER -p $CI_DOCKER_PASSWORD
+    - docker build --build-arg PUBLIC_API_URL=$PUBLIC_API_URL_PREPROD -t registry.ubsi.fr/sales-management-front:$CI_COMMIT_SHORT_SHA .
+    - docker push registry.ubsi.fr/sales-management-front:$CI_COMMIT_SHORT_SHA
+
+deploy-preprod:
+  <<: *deploy_default
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"
+  script:
+    - ssh -t dokku@ubsi.fr -p 2202 git:from-image sales-management-front registry.ubsi.fr/sales-management-front:$CI_COMMIT_SHORT_SHA || true
+    - ssh -t dokku@ubsi.fr -p 2202 git:from-image sales-management-back registry.ubsi.fr/sales-management-back:$CI_COMMIT_SHORT_SHA || true
+
+# ---------------------- Mise en production ----------------------
+build-front-prod:
+  <<: *build_front_default
+  rules: 
+    - if: $CI_COMMIT_TAG =~ /^v[0-9]+.[0-9]+.[0-9]+(-[0-9A-Za-z-]+)?$/ 
+  script:
+    - cd front-end
+    - docker login registry.ubsi.fr -u $CI_DOCKER_USER -p $CI_DOCKER_PASSWORD
+    - docker build --build-arg PUBLIC_API_URL=$PUBLIC_API_URL_PROD -t registry.ubsi.fr/sales-management-front:$CI_COMMIT_TAG .
+    - docker push registry.ubsi.fr/sales-management-front:$CI_COMMIT_TAG
+
+deploy-prod:
+  <<: *deploy_default
+  rules:
+    - if: $CI_COMMIT_TAG =~ /^v[0-9]+.[0-9]+.[0-9]+(-[0-9A-Za-z-]+)?$/
+  script:
+    - ssh -t dokku@ubsi.fr -p 2201 git:from-image sales-management-front registry.ubsi.fr/sales-management-front:$CI_COMMIT_TAG || true
+    - ssh -t dokku@ubsi.fr -p 2201 git:from-image sales-management-back registry.ubsi.fr/sales-management-back:$CI_COMMIT_SHORT_SHA || true

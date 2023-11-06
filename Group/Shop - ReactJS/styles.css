@@ -1,0 +1,259 @@
+body {
+  background-image: linear-gradient(to bottom, #1a1a1a, #1c1c1c, #1e1e1e, #212121, #232323);
+  margin: 0px;
+  padding: 0px;
+}
+
+
+.menu-horizontal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0;
+  background-color: #b7e0a5;
+}
+
+.menu-horizontal ul {
+  list-style: none;
+  margin: 5px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.menu-horizontal li {
+  margin: 0 10px;
+}
+
+.menu-horizontal a {
+  display: block;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.menu-horizontal a.active,
+.menu-horizontal a:hover {
+  background-color: #b7e0a5;
+  color: #fff;
+}
+
+.menu-horizontal .cart-button {
+  background-color: #333;
+  color: #fff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-horizontal .cart-button i {
+  font-size: 1.5rem;
+}
+
+.contener{
+  margin: 30px;
+  margin-top: 90px;
+}
+.inner-contener{
+  margin-top: 0px;
+  padding-top: 0px;
+  background-color: snow;
+}
+.banner {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #b7e0a5;
+  height: 200px;
+}
+
+.banner span {
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  background-color: #b7e0a5;
+  margin: 0 10px;
+  border-radius: 50%;
+}
+
+.banner-head {
+  font-size: 2.5rem;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  margin: 0;
+}
+
+.banner-head u {
+  text-decoration: none;
+  background-color: #b7e0a5;
+}
+
+.banner-head b {
+  color: #404040;
+}
+
+.deals {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+.card {
+  width: 300px; /* Set the width of each card */
+  margin: 10px; /* Add some margin between the cards */
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+.card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.card-content {
+  margin: 10px 0;
+}
+
+
+.card-actions button {
+  background-color: #d9534f;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.card-actions button:hover {
+  background-color: #c9302c;
+}
+
+.card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card-header img {
+  width: 60%;
+  height: auto;
+}
+
+.card-content h4 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 5px 0;
+  text-align: center;
+  color: #333;
+}
+
+.card-footer {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.card-footer i {
+  color: #555;
+}
+
+.card-footer s {
+  margin-right: 10px;
+}
+
+.card-footer .discount {
+  color: #c21807;
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+.card-footer span {
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.price {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.old-price {
+  text-decoration: line-through;
+  margin-right: 10px;
+}
+
+.new-price {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.discount {
+  color: red;
+}
+
+.inner-contener h1 {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+  padding: 10px;
+  border-bottom: 2px solid #ccc;
+}
+
+
+.menu-vertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.menu-vertical ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-vertical li {
+  margin: 5px 0;
+}
+
+.menu-vertical a {
+  display: block;
+  text-align: center;
+  color: #333;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.menu-vertical a:hover {
+  background-color: #c9302c;
+  color: #fff;
+}

@@ -1,0 +1,70 @@
+E:\Youtube\Visual Studio\Notepad\Notepad\bin\Debug\Notepad.exe.config
+E:\Youtube\Visual Studio\Notepad\Notepad\bin\Debug\Notepad.exe
+E:\Youtube\Visual Studio\Notepad\Notepad\bin\Debug\Notepad.pdb
+E:\Youtube\Visual Studio\Notepad\Notepad\obj\Debug\Notepad.csprojAssemblyReference.cache
+E:\Youtube\Visual Studio\Notepad\Notepad\obj\Debug\Notepad.MainForm.resources
+E:\Youtube\Visual Studio\Notepad\Notepad\obj\Debug\Notepad.Properties.Resources.resources
+E:\Youtube\Visual Studio\Notepad\Notepad\obj\Debug\Notepad.csproj.GenerateResource.cache
+E:\Youtube\Visual Studio\Notepad\Notepad\obj\Debug\Notepad.csproj.CoreCompileInputs.cache
+E:\Youtube\Visual Studio\Notepad\Notepad\obj\Debug\Notepad.exe
+E:\Youtube\Visual Studio\Notepad\Notepad\obj\Debug\Notepad.pdb
+C:\Users\Matthieu\Desktop\Code\Notepad.NET-lesson-12\Notepad\bin\Debug\Notepad.exe.config
+C:\Users\Matthieu\Desktop\Code\Notepad.NET-lesson-12\Notepad\bin\Debug\Notepad.exe
+C:\Users\Matthieu\Desktop\Code\Notepad.NET-lesson-12\Notepad\bin\Debug\Notepad.pdb
+C:\Users\Matthieu\Desktop\Code\Notepad.NET-lesson-12\Notepad\obj\Debug\Notepad.csproj.AssemblyReference.cache
+C:\Users\Matthieu\Desktop\Code\Notepad.NET-lesson-12\Notepad\obj\Debug\Notepad.csproj.SuggestedBindingRedirects.cache
+C:\Users\Matthieu\Desktop\Code\Notepad.NET-lesson-12\Notepad\obj\Debug\Notepad.MainForm.resources
+C:\Users\Matthieu\Desktop\Code\Notepad.NET-lesson-12\Notepad\obj\Debug\Notepad.Properties.Resources.resources
+C:\Users\Matthieu\Desktop\Code\Notepad.NET-lesson-12\Notepad\obj\Debug\Notepad.csproj.GenerateResource.cache
+C:\Users\Matthieu\Desktop\Code\Notepad.NET-lesson-12\Notepad\obj\Debug\Notepad.csproj.CoreCompileInputs.cache
+C:\Users\Matthieu\Desktop\Code\Notepad.NET-lesson-12\Notepad\obj\Debug\Notepad.exe
+C:\Users\Matthieu\Desktop\Code\Notepad.NET-lesson-12\Notepad\obj\Debug\Notepad.pdb
+C:\Users\Matthieu\Desktop\Code\Notepad.NET-lesson-12\Notepad\obj\Debug\Notepad.Controls.MainMenuStrip.resources
+C:\Users\Matthieu\Desktop\Code\ping\Notepad\bin\Debug\Notepad.exe.config
+C:\Users\Matthieu\Desktop\Code\ping\Notepad\bin\Debug\Notepad.exe
+C:\Users\Matthieu\Desktop\Code\ping\Notepad\bin\Debug\Notepad.pdb
+C:\Users\Matthieu\Desktop\Code\ping\Notepad\obj\Debug\Notepad.csproj.AssemblyReference.cache
+C:\Users\Matthieu\Desktop\Code\ping\Notepad\obj\Debug\Notepad.csproj.SuggestedBindingRedirects.cache
+C:\Users\Matthieu\Desktop\Code\ping\Notepad\obj\Debug\Notepad.Controls.MainMenuStrip.resources
+C:\Users\Matthieu\Desktop\Code\ping\Notepad\obj\Debug\Notepad.MainForm.resources
+C:\Users\Matthieu\Desktop\Code\ping\Notepad\obj\Debug\Notepad.Properties.Resources.resources
+C:\Users\Matthieu\Desktop\Code\ping\Notepad\obj\Debug\Notepad.csproj.GenerateResource.cache
+C:\Users\Matthieu\Desktop\Code\ping\Notepad\obj\Debug\Notepad.csproj.CoreCompileInputs.cache
+C:\Users\Matthieu\Desktop\Code\ping\Notepad\obj\Debug\Notepad.exe
+C:\Users\Matthieu\Desktop\Code\ping\Notepad\obj\Debug\Notepad.pdb
+C:\Users\serge\Downloads\ping\ping\Notepad\bin\Debug\Notepad.exe.config
+C:\Users\serge\Downloads\ping\ping\Notepad\bin\Debug\Notepad.exe
+C:\Users\serge\Downloads\ping\ping\Notepad\bin\Debug\Notepad.pdb
+C:\Users\serge\Downloads\ping\ping\Notepad\obj\Debug\Notepad.csproj.AssemblyReference.cache
+C:\Users\serge\Downloads\ping\ping\Notepad\obj\Debug\Notepad.csproj.SuggestedBindingRedirects.cache
+C:\Users\serge\Downloads\ping\ping\Notepad\obj\Debug\Notepad.Controls.MainMenuStrip.resources
+C:\Users\serge\Downloads\ping\ping\Notepad\obj\Debug\Notepad.MainForm.resources
+C:\Users\serge\Downloads\ping\ping\Notepad\obj\Debug\Notepad.Properties.Resources.resources
+C:\Users\serge\Downloads\ping\ping\Notepad\obj\Debug\Notepad.csproj.GenerateResource.cache
+C:\Users\serge\Downloads\ping\ping\Notepad\obj\Debug\Notepad.csproj.CoreCompileInputs.cache
+C:\Users\serge\Downloads\ping\ping\Notepad\obj\Debug\Notepad.exe
+C:\Users\serge\Downloads\ping\ping\Notepad\obj\Debug\Notepad.pdb
+C:\Users\User\Desktop\ping\ping\Notepad\bin\Debug\Notepad.exe.config
+C:\Users\User\Desktop\ping\ping\Notepad\bin\Debug\Notepad.exe
+C:\Users\User\Desktop\ping\ping\Notepad\bin\Debug\Notepad.pdb
+C:\Users\User\Desktop\ping\ping\Notepad\obj\Debug\Notepad.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\ping\ping\Notepad\obj\Debug\Notepad.csproj.SuggestedBindingRedirects.cache
+C:\Users\User\Desktop\ping\ping\Notepad\obj\Debug\Notepad.Controls.MainMenuStrip.resources
+C:\Users\User\Desktop\ping\ping\Notepad\obj\Debug\Notepad.MainForm.resources
+C:\Users\User\Desktop\ping\ping\Notepad\obj\Debug\Notepad.Properties.Resources.resources
+C:\Users\User\Desktop\ping\ping\Notepad\obj\Debug\Notepad.csproj.GenerateResource.cache
+C:\Users\User\Desktop\ping\ping\Notepad\obj\Debug\Notepad.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\ping\ping\Notepad\obj\Debug\Notepad.exe
+C:\Users\User\Desktop\ping\ping\Notepad\obj\Debug\Notepad.pdb
+C:\Users\User\Desktop\ping_to_mod\ping\Notepad\bin\Debug\Notepad.exe.config
+C:\Users\User\Desktop\ping_to_mod\ping\Notepad\bin\Debug\Notepad.exe
+C:\Users\User\Desktop\ping_to_mod\ping\Notepad\bin\Debug\Notepad.pdb
+C:\Users\User\Desktop\ping_to_mod\ping\Notepad\obj\Debug\Notepad.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\ping_to_mod\ping\Notepad\obj\Debug\Notepad.csproj.SuggestedBindingRedirects.cache
+C:\Users\User\Desktop\ping_to_mod\ping\Notepad\obj\Debug\Notepad.Controls.MainMenuStrip.resources
+C:\Users\User\Desktop\ping_to_mod\ping\Notepad\obj\Debug\Notepad.MainForm.resources
+C:\Users\User\Desktop\ping_to_mod\ping\Notepad\obj\Debug\Notepad.Properties.Resources.resources
+C:\Users\User\Desktop\ping_to_mod\ping\Notepad\obj\Debug\Notepad.csproj.GenerateResource.cache
+C:\Users\User\Desktop\ping_to_mod\ping\Notepad\obj\Debug\Notepad.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\ping_to_mod\ping\Notepad\obj\Debug\Notepad.exe
+C:\Users\User\Desktop\ping_to_mod\ping\Notepad\obj\Debug\Notepad.pdb

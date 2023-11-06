@@ -1,0 +1,14 @@
+.basket {
+  display: grid;
+  grid-template-columns: 2fr 4fr 2fr;
+}
+
+.basket table,
+.basket td {
+  border: 1px solid var(--default-text-color);
+}
+
+.basket thead {
+  background-color: #333;
+  color: #fff;
+}

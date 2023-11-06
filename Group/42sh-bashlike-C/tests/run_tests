@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# create vitual env to install pyyaml
+mkdir -p env
+virtualenv env &> /dev/null
+source env/bin/activate
+# import all we need
+pip install pyyaml &> /dev/null
+pip install pyfiglet &> /dev/null
+pip install termcolor &> /dev/null
+pip install alive_progress &> /dev/null
+
+python tests/testsuite.py --binary $1
+# destroy created env to keep master clean
+rm -rf env
+./tests/redir_tests.sh $1
+rm file*
+exit $?
+#exit 0

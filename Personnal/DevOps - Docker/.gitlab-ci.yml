@@ -1,0 +1,35 @@
+image: python:latest
+stages:
+    - lint
+    - display-lint
+worker-job:
+    stage: lint
+    before_script:
+        - pip install pylint
+    rules:
+        - if: $CI_COMMIT_MESSAGE !~ /no-ci/
+    script: pylint --exit-zero ./worker > ./worker_code_quality.txt
+    artifacts:
+        when: always
+        paths:
+            - worker_code_quality.txt
+    allow_failure: true
+web-job:
+    stage: lint
+    before_script:
+        - pip install pylint
+    rules:
+        - if: $CI_COMMIT_MESSAGE !~ /no-ci/
+    script: pylint --exit-zero ./web > ./web_code_quality.txt 
+    artifacts:
+        when: always
+        paths:
+            - web_code_quality.txt
+    allow_failure: true
+dipslay-lint-job:
+    stage: display-lint
+    rules:
+        - if: $CI_COMMIT_MESSAGE !~ /no-ci/
+    script:
+        - cat web_code_quality.txt
+        - cat worker_code_quality.txt

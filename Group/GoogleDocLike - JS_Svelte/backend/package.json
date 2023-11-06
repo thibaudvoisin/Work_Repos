@@ -1,0 +1,19 @@
+{
+  "name": "backend",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "bun-types": "latest",
+    "prisma": "^5.3.1"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@elysiajs/cors": "^0.6.0",
+    "@elysiajs/websocket": "^0.2.8",
+    "@prisma/client": "5.3.1",
+    "elysia": "^0.7.14",
+    "ws": "^8.14.2"
+  }
+}

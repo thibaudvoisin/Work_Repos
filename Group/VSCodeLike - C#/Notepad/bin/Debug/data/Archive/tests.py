@@ -1,0 +1,5 @@
+assert(1==1)
+assert(12==1)
+assert(1==31)
+assert(13==13)
+assert(133==331)

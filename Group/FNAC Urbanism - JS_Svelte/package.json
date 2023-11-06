@@ -1,0 +1,22 @@
+{
+    "name": "sales-management",
+    "version": "1.0.0",
+    "scripts": {
+        "postinstall": "concurrently \"cd back-end && npm ci\" \"cd front-end && npm ci\"",
+        "set-up:db": "cd database && docker compose up -d",
+        "start": "concurrently \"npm run start:back-end\" \"npm run start:front-end\"",
+        "start:back-end": "cd back-end && npm run dev",
+        "start:front-end": "cd front-end && npm run dev",
+        "lint": "cd back-end && npm run lint && cd ../front-end && npm run lint",
+        "lint:fix": "cd back-end && npm run lint:fix && cd ../front-end && npm run lint:fix",
+        "format": "cd back-end && npm run format && cd ../front-end && npm run format",
+        "format:fix": "cd back-end && npm run format:fix && cd ../front-end && npm run format:fix"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "concurrently": "^8.2.1",
+        "fuse": "^0.4.0"
+    }
+}
